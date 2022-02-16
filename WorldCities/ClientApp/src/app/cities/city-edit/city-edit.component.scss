@@ -1,0 +1,79 @@
+h1 {
+  text-align: center;
+}
+
+p.alert-loading {
+  text-align: center; //since there is no close button on the error message.
+  /*background-color: #673ab7;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: 30%;
+  margin-right: 30%;
+  box-sizing: border-box;*/
+}
+
+mat-form-field {
+  min-width: 40vw;
+  font-size: 14px;
+  width: 100%;
+}
+
+mat-spinner {
+  margin-left: 20px;
+}
+
+.alert-danger {
+  text-align: center; //since there is no close button on the error message.
+  background-color: #fee3e8;
+  border-color: #f93154;
+  padding: 10px;
+  border-left: 6px solid #f93154;
+  border-radius: 5px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+// In case the error message should allow closing through a X button.
+.closebtn {
+  margin-left: 15px;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: white;
+}
+
+/*input.ng-valid {
+  border-left: 5px solid green;
+}
+input.ng-invalid.ng-dirty,
+input.ng-invalid.ng-touched {
+  border-left: 5px solid #f93154;
+}
+input.ng-valid ~ .valid-feedback, input.ng-invalid ~ .invalid-feedback {
+  padding: 10px;
+  display: block;
+}*/
+
+.confirm-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.cancel-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+mat-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

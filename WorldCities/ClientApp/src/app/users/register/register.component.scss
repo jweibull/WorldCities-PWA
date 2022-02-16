@@ -1,0 +1,85 @@
+mat-card {
+  max-width: 600px;
+  min-width: 300px;
+  margin-top: 40px;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin: 40px 0 40px 0;
+}
+mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.form-group {
+  width: 80% ;
+}
+
+.register-button-container {
+  margin-top: 20px;
+  width: 80% ;
+}
+
+.register-button-container .register-button {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.register-button-container .cancel-button {
+  width: 100%;
+}
+
+.alert-danger {
+  text-align: center; //since there is no close button on the error message.
+  background-color: #fee3e8;
+  border-color: #f93154;
+  padding: 10px;
+  border-left: 6px solid #f93154;
+  border-radius: 5px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+// In case the error message should allow closing through a X button.
+.closebtn {
+  margin-left: 15px;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: white;
+}
+
+.login-container .login-img {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  border-radius: 50%;
+}
+.login-container .login-title {
+  margin: 15px 0;
+  text-align: center;
+  font-size: 1.5em;
+  color: #444;
+}
+.login-container .login-link {
+  margin-top: 10px;
+  text-align: center;
+}
+.login-container .login-form .form-group {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+  .login-container {
+    width: 100%;
+  }
+}
+

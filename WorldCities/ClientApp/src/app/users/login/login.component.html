@@ -1,0 +1,65 @@
+<div class="login-container" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <img id="login-img" class="login-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+    <h2 class="login-title">{{title}}</h2>
+    <div fxLayout="column" fxLayoutAlign="center center" class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div *ngIf="this.form.errors?.['auth']" class="alert-danger">{{form.errors?.['auth']}}</div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>E-mail:</mat-label>
+          <input matInput formControlName="username" type="text" required id="username" placeholder="E-mail address..." class="form-control">
+          <mat-error *ngIf="this.form.get('username')?.errors?.['required']">
+            E-mail is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+          <mat-form-field appearance="standard">
+            <mat-label>Password:</mat-label>
+            <input matInput id="password" type="password" required formControlName="password" placeholder="Password" class="form-control">
+            <mat-error *ngIf="this.form.get('password')?.errors?.['required']">
+              Password is required.
+            </mat-error>
+            <!--<mat-error *ngIf="this.form.get('lat')?.errors?.['pattern']">
+              Latitude requires a positive or negative number with 0-4 decimal values.
+            </mat-error>-->
+          </mat-form-field>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember" value="remember" />Remember me</label>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center" class="sign-in-button-container">
+        <button type="submit"
+              (click)="onSubmit()"
+              mat-raised-button color="primary"
+              [disabled]="form.invalid"
+              class="sign-in-button">
+          Sign in
+        </button>
+        <button type="submit"
+                (click)="onBack()"
+                mat-raised-button color="basic"
+                class="cancel-button">
+          Cancel
+        </button>
+      </div>
+      <div class="login-link">
+        <a href="#">
+            Forgot the password?
+        </a>
+      </div>
+      <br>
+      <div>
+        <app-login-external-providers></app-login-external-providers>
+      </div>
+      <br>
+      <div class="login-link">
+        <a [routerLinkActive]="['link-active']" [routerLink]="['/register']">
+          Don't have an account? Click here to create one
+        </a>
+      </div>
+    </div>
+
+  </mat-card>
+</div>
+

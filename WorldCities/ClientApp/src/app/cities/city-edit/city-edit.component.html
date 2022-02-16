@@ -1,0 +1,121 @@
+<div class="city-edit" fxLayout="column" fxLayoutAlign="start center">
+  <mat-card>
+    <h1>{{title}}</h1>
+    <ng-container *ngIf="(this.id && !city)">
+      <p class="alert-loading"><em>Loading...</em></p>
+    </ng-container>
+    <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div *ngIf="this.form.invalid && this.form.errors?.['isDupeCity']" class="alert-danger">
+        <!--<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>-->
+        <strong>ERROR</strong>: A city with the same <i>name</i>, <i>latitude</i>, <i>longitutde</i> and <i>country</i> already exists.
+      </div>
+        <div class="form-group">
+            <br />
+            <mat-form-field appearance="standard">
+              <mat-label>City name:</mat-label>
+              <input matInput formControlName="name" type="text" required id="name" placeholder="City name..." class="form-control">
+              <mat-error *ngIf="this.form.get('name')?.errors?.['required']">
+                Name is required.
+              </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <br />
+            <mat-form-field appearance="standard">
+              <mat-label>City latitude:</mat-label>
+              <input matInput id="lat" type="text" required formControlName="lat" placeholder="Latidude..." class="form-control">
+              <mat-error *ngIf="this.form.get('lat')?.errors?.['required']">
+                Latitude is required.
+              </mat-error>
+              <mat-error *ngIf="this.form.get('lat')?.errors?.['pattern']">
+                Latitude requires a positive or negative number with 0-4 decimal values.
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <br />
+            <mat-form-field appearance="standard">
+              <mat-label>City longitude:</mat-label>
+              <input matInput id="lon" type="text" required formControlName="lon" placeholder="Longitude..." class="form-control">
+              <mat-error *ngIf="this.form.get('lon')?.errors?.['required']">
+                Longitude is required.
+              </mat-error>
+              <mat-error *ngIf="this.form.get('lat')?.errors?.['pattern']">
+                Longitude requires a positive or negative number with 0-4 decimal values.
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group" *ngIf="countries">
+            <br />
+            <mat-form-field *ngIf="countries | async as result" appearance="standard">
+                <mat-label>Select a Country...</mat-label>
+                <mat-select type="number" required id="countryId" formControlName="countryId" class="form-control">
+                  <mat-option *ngFor="let country of result.data; let l = last;" [value]="country.id">
+                    {{country.name}}
+                    <ng-container *ngIf="l">{{this.hasLoaded()}}</ng-container>
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="this.form.get('countryId')?.errors?.['required']">
+                  Country is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" class="form-group commands">
+            <ng-container *ngIf="id">
+              <button type="submit"
+                      (click)="onSubmit()"
+                      mat-raised-button color="primary"
+                      [disabled]="form.invalid || (this.loading | async)"
+                      class="confirm-button"
+              >
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  Save
+                  <mat-spinner *ngIf="this.loading | async" color="primary" [diameter]="20"></mat-spinner>
+                </div>
+              </button>
+            </ng-container>
+            <ng-container *ngIf="!id">
+              <button type="submit"
+                      (click)="onSubmit()"
+                      mat-raised-button color="primary"
+                      [disabled]="form.invalid || (this.loading | async)"
+                      class="confirm-button"
+              >
+                <div fxLayout="row" fxLayoutAlign="center center">
+                  Create
+                  <mat-spinner *ngIf="this.loading | async" color="primary" [diameter]="20"></mat-spinner>
+                </div>
+              </button>
+            </ng-container>
+            <button type="submit" [routerLink]="['/cities']" mat-raised-button color="basic" class="cancel-button">
+                Cancel
+            </button>
+        </div>
+    </div>
+  </mat-card>
+
+  <!--
+  <mat-card class="form-debug-info">
+    <mat-card-header>
+      <mat-card-title>Form Debug Info</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div><strong>Form value:</strong></div>
+      <div>{{ form.value | json }}</div>
+      <div><strong>Form status:</strong></div>
+      <div>{{ form.status | json }}</div>
+    </mat-card-content>
+  </mat-card>
+  -->
+  <!--
+  <mat-card class="form-activity-log">
+    <mat-card-header>
+      <mat-card-title>Form Activity Log</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p *ngIf="this.activityLog" [innerHtml]="this.activityLog"></p>
+    </mat-card-content>
+  </mat-card>
+  -->
+</div>
+

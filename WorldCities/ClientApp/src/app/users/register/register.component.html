@@ -1,0 +1,67 @@
+<div class="login-container" fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <img id="login-img" class="login-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+    <h2 class="login-title">{{title}}</h2>
+    <div fxLayout="column" fxLayoutAlign="center center" class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div *ngIf="form.errors?.['register']" class="alert-danger">{{form.errors?.['register']}}</div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>Name:</mat-label>
+          <input matInput formControlName="displayName" type="text" required id="displayName" placeholder="Insert username..." class="form-control">
+          <mat-error *ngIf="this.form.get('displayName')?.errors?.['required']">
+            Name is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>E-mail:</mat-label>
+          <input matInput formControlName="email" type="text" required id="email" placeholder="Insert e-mail..." class="form-control">
+          <mat-error *ngIf="form.get('email')?.errors?.['required']">
+            E-Mail is required.
+          </mat-error>
+          <mat-error *ngIf="this.form.get('email')?.errors?.['email']">
+            Please insert a valid e-mail address.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>Password:</mat-label>
+          <input matInput formControlName="password" type="password" required id="password" placeholder="Insert password..." class="form-control">
+          <mat-error *ngIf="form.get('password')?.errors?.['required']">
+            Please insert a valid password.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field appearance="standard">
+          <mat-label>Confirm password:</mat-label>
+          <input matInput formControlName="passwordConfirm" type="password" required id="passwordConfirm" placeholder="Confirm your password..." class="form-control">
+          <mat-error *ngIf="form.get('passwordConfirm')?.errors?.['notSame']">
+            Passwords don't match.
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!--<div *mgIf="this.form.invalid && this.form.errors?.['isSamePassword']" class="alert-danger">
+        Passwords don't match.
+      </div>-->
+      <div fxLayout="column" fxLayoutAlign="center center" class="register-button-container">
+            <button type="submit"
+                    (click)="onSubmit()"
+                    [disabled]="form.invalid"
+                    mat-raised-button color="primary"
+                    class="register-button">
+              Register
+            </button>
+            <button type="submit"
+                    (click)="onBack()"
+                    mat-raised-button color="basic"
+                    class="cancel-button">
+              Cancel
+          </button>
+      </div>
+    </div>
+  </mat-card>
+</div>
+

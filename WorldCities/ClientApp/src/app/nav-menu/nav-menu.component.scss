@@ -1,0 +1,45 @@
+mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+  height:100%;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+.toolbar-items {
+  min-width: 100vw;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  padding: 5px
+}
+
+a:hover,
+a:active {
+  color: lightgray;
+}
+
+.navigation-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.icon, .brand-icon {
+  display: inline-block;
+  height: 30px;
+  margin: 0 5px;
+  padding-right: 5px;
+  text-align: center;
+  vertical-align: middle;
+  width: 15%;
+}
+
+.label, .brand-label {
+  display: inline-block;
+  line-height: 30px;
+  margin: 0;
+  width: 85%;
+}

@@ -1,18 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthorizeService } from '../services/auth-services/authorize.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  styleUrls: ['./nav-menu.component.scss']
 })
-export class NavMenuComponent {
-  isExpanded = false;
+export class NavMenuComponent implements OnInit {
 
-  collapse() {
-    this.isExpanded = false;
+  constructor(private auth: AuthorizeService, private router: Router) { }
+
+  ngOnInit(): void {
   }
 
-  toggle() {
-    this.isExpanded = !this.isExpanded;
+  isLoggedIn(): boolean {
+    return this.auth.isLoggedIn();
+  }
+
+  getUserName(): Observable<string> {
+    return this.auth.getUserName();
+  }
+
+  getDisplayName(): Observable<string> {
+    return this.auth.getDisplayName();
+  }
+
+  logout(): boolean {
+    // logs out the user, then redirects him to Home View.
+    if (this.auth.logout()) {
+        this.router.navigate(["/"]);
+    }
+    return false;
   }
 }
