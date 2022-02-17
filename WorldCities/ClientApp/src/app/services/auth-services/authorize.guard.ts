@@ -17,11 +17,11 @@ export const QueryParameterNames = {
 export class AuthorizeGuard implements CanActivate {
   constructor(private auth: AuthorizeService, private router: Router) {
   }
-  canActivate(
-    _next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      return of<boolean>(this.auth.isLoggedIn())
-        .pipe(tap(isAuthenticated => this.handleAuthorization(isAuthenticated, state)));
+  canActivate(_next: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+    Observable<boolean> | Promise<boolean> | boolean {
+    return of<boolean>(this.auth.isLoggedIn()).pipe(tap(isAuthenticated => {
+      this.handleAuthorization(isAuthenticated, state)
+    }));
   }
 
   private handleAuthorization(isAuthenticated: boolean, state: RouterStateSnapshot) {

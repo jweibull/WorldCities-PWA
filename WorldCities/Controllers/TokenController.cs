@@ -280,13 +280,11 @@ namespace WorldCities.Controllers
                 new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUnixTimeSeconds().ToString())
                 // TODO: add additional claims here
             };
-            var tokenExpirationMins = _configuration.GetValue<int>
-                ("Auth:Jwt:TokenExpirationInMinutes");
-            var issuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_configuration["Auth:Jwt:Key"]));
+            var tokenExpirationMins = _configuration.GetValue<int>("Auth:Jwt:TokenExpirationInMinutes");
+            var issuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Auth:Jwt:Key"]));
             var token = new JwtSecurityToken(
-                issuer: _configuration["Auth:Jwt:Issuer"],
-                audience: _configuration["Auth:Jwt:Audience"],
+                issuer: _configuration.GetValue<string>("Auth:Jwt:Issuer"),
+                audience: _configuration.GetValue<string>("Auth:Jwt:Audience"),
                 claims: claims,
                 notBefore: now,
                 expires: now.Add(TimeSpan.FromMinutes(tokenExpirationMins)),

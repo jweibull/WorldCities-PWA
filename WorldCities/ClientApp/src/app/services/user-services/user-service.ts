@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +10,9 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   get<User>(email: string): Observable<User> {
-    const url = "api/user/GetUser/" + email;
-    return this.http.get<User>(url);
+    const url = "api/user/getuser"
+    const params = new HttpParams().set("username", email);
+    return this.http.get<User>(url, { params });
   }
 
   put<User>(user: User): Observable<User> {

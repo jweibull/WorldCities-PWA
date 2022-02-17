@@ -10,11 +10,13 @@ const PROXY_CONFIG = [
       "/api/Cities/IsDupeCity",
       "/api/Countries",
       "/api/Countries/IsDupeField",
+      "api/token",
       "/api/token/auth",
       "/api/token/externallogin",
       "/api/token/externallogincallback",
-      "/api/user/addUser",
-      "/api/user/getUser"
+      "api/user",
+      "/api/user/adduser",
+      "/api/user/getuser"
    ],
     target: target,
     secure: false,

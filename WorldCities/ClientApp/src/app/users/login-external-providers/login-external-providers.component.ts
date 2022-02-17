@@ -29,7 +29,7 @@ export class LoginExternalProvidersComponent implements OnInit {
       private domSanitizer: DomSanitizer) {
         this.matIconRegistry.addSvgIcon(
           'googlelogo',
-          this.domSanitizer.bypassSecurityTrustResourceUrl('../../../assets/img/google-logo.svg')
+          this.domSanitizer.bypassSecurityTrustResourceUrl('src/assets/img/googlelogo.svg')
         );
   }
 

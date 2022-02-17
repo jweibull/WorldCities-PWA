@@ -9,15 +9,15 @@
         <mat-icon class="icon">map</mat-icon>
         <span class="label">Countries</span>
       </a>
-      <a *ngIf="this.isLoggedIn()" mat-list-item [routerLink]="['/manage']">
+      <a *ngIf="this.userLoggedIn | async" mat-list-item [routerLink]="['/manage']">
         <mat-icon class="icon">account_circle</mat-icon>
-        <span class="label">Welcome {{this.getDisplayName() | async}}</span>
+        <span class="label">Welcome {{this.displayName | async}}</span>
       </a>
-      <a *ngIf="!this.isLoggedIn()" mat-list-item [routerLink]="['/login']">
+      <a *ngIf="!(this.userLoggedIn | async)" mat-list-item [routerLink]="['/login']">
         <mat-icon class="icon">login</mat-icon>
         <span class="label">Login</span>
       </a>
-      <a *ngIf="this.isLoggedIn()" mat-list-item [routerLink]="['/logout']">
+      <a *ngIf="this.userLoggedIn | async" mat-list-item [routerLink]="['/logout']">
         <mat-icon class="icon">logout</mat-icon>
         <span class="label">Logout</span>
       </a>
@@ -45,14 +45,14 @@
           <mat-icon class="icon">map</mat-icon>
           <span class="label">Countries</span>
         </a>
-        <a [routerLinkActive]="['link-active']" *ngIf="this.isLoggedIn()" mat-list-item [routerLink]="['/manage']">
-          <span class="label"><mat-icon class="icon">account_circle</mat-icon>Welcome {{this.getDisplayName() | async}}</span>
+        <a [routerLinkActive]="['link-active']" *ngIf="this.userLoggedIn | async" mat-list-item [routerLink]="['/manage']">
+          <span class="label"><mat-icon class="icon">account_circle</mat-icon>Welcome {{this.displayName | async}}</span>
         </a>
-        <a [routerLinkActive]="['link-active']" *ngIf="!this.isLoggedIn()" mat-list-item [routerLink]="['/login']">
+        <a [routerLinkActive]="['link-active']" *ngIf="!(this.userLoggedIn | async)" mat-list-item [routerLink]="['/login']">
           <mat-icon class="icon">login</mat-icon>
           <span class="label">Login</span>
         </a>
-        <a [routerLinkActive]="['link-active']" *ngIf="this.isLoggedIn()" mat-list-item (click)="logout()">
+        <a [routerLinkActive]="['link-active']" *ngIf="this.userLoggedIn | async" mat-list-item (click)="logout()">
           <mat-icon class="icon">logout</mat-icon>
           <span class="label">Logout</span>
         </a>

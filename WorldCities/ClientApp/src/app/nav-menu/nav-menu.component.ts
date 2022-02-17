@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizeService } from '../services/auth-services/authorize.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
 
@@ -12,21 +13,16 @@ import { Observable } from 'rxjs';
 })
 export class NavMenuComponent implements OnInit {
 
+  public userLoggedIn!: Observable<boolean>;
+  public displayName!: Observable<string | null>;
+
   constructor(private auth: AuthorizeService, private router: Router) { }
 
+  //Find a way to emit a login type so it doesn't run millions of times the same function
+
   ngOnInit(): void {
-  }
-
-  isLoggedIn(): boolean {
-    return this.auth.isLoggedIn();
-  }
-
-  getUserName(): Observable<string> {
-    return this.auth.getUserName();
-  }
-
-  getDisplayName(): Observable<string> {
-    return this.auth.getDisplayName();
+    this.userLoggedIn = this.auth.isLoggedInAsync();
+    this.displayName = this.auth.getUser().pipe(map(u => u && u.displayName));
   }
 
   logout(): boolean {

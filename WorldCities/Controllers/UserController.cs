@@ -32,10 +32,10 @@ namespace WorldCities.Controllers
         }
 
         /// <summary>
-        /// PUT: api/user/adduser
+        /// GET: api/user/getuser
         /// </summary>
-        /// <returns>Creates a new User and return it accordingly.</returns>
-        [HttpGet("{email}")]
+        /// <returns>CReturns an existing user or BadRequest.</returns>
+        [HttpGet]
         public async Task<ActionResult<UserDTO>> GetUser([FromQuery]string username)
         {
             // check if the Username/Email already exists
@@ -52,7 +52,7 @@ namespace WorldCities.Controllers
         /// PUT: api/user/adduser
         /// </summary>
         /// <returns>Creates a new User and return it accordingly.</returns>
-        [HttpPut()]
+        [HttpPut]
         public async Task<ActionResult<UserDTO>> AddUser([FromBody]UserDTO model)
         {
             // return a generic HTTP Status 500 (Server Error)
